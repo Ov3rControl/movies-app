@@ -4,12 +4,9 @@ module.exports = {
     'eslint:recommended',
     'plugin:react-native/all',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
     'plugin:prettier/recommended',
-    'prettier/react',
-    'prettier/@typescript-eslint',
   ],
-  plugins: ['react', 'react-native', 'react-hooks', 'prettier', 'reanimated'],
+  plugins: ['react', 'react-native', 'react-hooks', 'prettier'],
   env: {
     browser: true,
     mocha: true,
