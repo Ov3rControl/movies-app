@@ -59,7 +59,9 @@
     "baseUrl": ".",
     "paths": {
       "*": ["src/*"],
-      "@components/*": ["src/components/*"]
+      "@components/*": ["src/components/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@styles/*": ["src/styles/*"],
     }
   },
   "exclude": [

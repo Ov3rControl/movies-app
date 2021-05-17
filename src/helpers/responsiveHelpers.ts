@@ -3,6 +3,7 @@ import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsi
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
 export const screenHeight = Dimensions.get('window').height
+export const screenWidth = Dimensions.get('window').width
 
 const viewPortSize = { width: 375, height: 812 }
 
