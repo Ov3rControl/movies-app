@@ -62,6 +62,8 @@
       "@components/*": ["src/components/*"],
       "@helpers/*": ["src/helpers/*"],
       "@styles/*": ["src/styles/*"],
+      "@screens/*": ["src/screens/*"],
+      "@navigators/*": ["src/navigators/*"],
     }
   },
   "exclude": [
