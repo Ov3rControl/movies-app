@@ -6,9 +6,9 @@ import colors from 'styles/colors'
 import Typography from 'components/core/typography/Typography'
 import VerticalSpace from 'components/layout/VerticalSpace'
 import Row from 'components/layout/Row'
-import RatingStars from 'components/RatingStars'
 import HorizontalSpace from 'components/layout/HorizontalSpace'
 import LanguageTag from 'components/LanguageTag'
+import { MovieGeneralInfo } from 'components/movies/MovieGeneralInfo'
 
 type MovieCardProps = {
   title: string
@@ -41,21 +41,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
         <Icon name={'heart'} color={colors.wildWatermelon} size={perfectFont(24)} />
       </Row>
     </CardImageBackground>
-    <CardImageInfo>
-      <Typography
-        text={categories}
-        color={colors.radicalRed}
-        size={10}
-        fontWeight={'300'}
-        fontFamily={'Gilroy-Light'}
-        marginLeft={perfectWidth(6)}
-      />
-      <Row alignItems={'center'}>
-        <RatingStars numOfSelected={avgVote / 2} marginLeft={perfectWidth(6)} />
-        <HorizontalSpace width={10} />
-        <Typography text={`${voteCount} REVIEWS`} color={colors.stormGray} size={10} />
-      </Row>
-    </CardImageInfo>
+    <MovieGeneralInfo text={categories} avgVote={avgVote} voteCount={voteCount} />
     <MovieInfo>
       <Typography
         text={title}
@@ -87,11 +73,6 @@ const CardContainer = styled.View`
 
 const CardImageBackground = styled.ImageBackground`
   height: ${perfectHeight(220)}px;
-`
-
-const CardImageInfo = styled.View`
-  height: ${perfectHeight(45)}px;
-  background-color: ${colors.steelGray};
 `
 
 const MovieInfo = styled.View`
