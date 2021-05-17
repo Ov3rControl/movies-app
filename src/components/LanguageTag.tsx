@@ -1,4 +1,5 @@
 import React from 'react'
+import { ViewStyle } from 'react-native'
 import styled from 'styled-components/native'
 import Typography from 'components/core/typography/Typography'
 import colors from 'styles/colors'
@@ -6,10 +7,10 @@ import { perfectHeight, perfectWidth } from 'helpers/responsiveHelpers'
 
 type LanguageTagProps = {
   language: string
-}
+} & ViewStyle
 
-const LanguageTag: React.FC<LanguageTagProps> = ({ language }) => (
-  <Container>
+const LanguageTag: React.FC<LanguageTagProps> = ({ language, ...props }) => (
+  <Container style={{ ...props }}>
     <Typography text={language} color={colors.white} size={14} />
   </Container>
 )
