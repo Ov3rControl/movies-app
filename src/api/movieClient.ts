@@ -7,7 +7,7 @@ const API_KEY = '2e2eb880c8c326884f8a6332a732c944'
 
 class MoviesClient extends AxiosClient {
   public constructor() {
-    super('https://api.themoviedb.org/3/movie/')
+    super('https://api.themoviedb.org/3/')
     this._initializeRequestInterceptor()
   }
 
@@ -30,12 +30,16 @@ class MoviesClient extends AxiosClient {
   }
 
   public getMovies = (type: string, page: number): Promise<MoviesResponse> =>
-    this.instance.get(`${type}?page=${page}`)
+    this.instance.get(`movie/${type}?page=${page}`)
 
-  public getMovieDetails = (movieId: string): Promise<SingleMovie> => this.instance.get(movieId)
+  public getMovieDetails = (movieId: string): Promise<SingleMovie> =>
+    this.instance.get(`movie/${movieId}`)
 
   public getSimilarMovies = (movieId: string): Promise<MoviesResponse> =>
-    this.instance.get(`${movieId}/similar`)
+    this.instance.get(`movie/${movieId}/similar`)
+
+  public searchMovies = (query: string): Promise<MoviesResponse> =>
+    this.instance.get(`search/movie?query=${query}`)
 }
 
 export default MoviesClient

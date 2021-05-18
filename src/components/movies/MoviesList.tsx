@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import R from 'ramda'
-import { useInfiniteQuery } from 'react-query'
+import { useInfiniteQuery, useQuery } from 'react-query'
 import { FlatList, StyleSheet } from 'react-native'
 import MovieCard from 'components/cards/MovieCard'
 import colors from 'styles/colors'
@@ -22,6 +22,12 @@ const MoviesList: React.FC = props => {
     { getNextPageParam: lastPage => lastPage.page + 1 },
   )
 
+  const { data: searchedMovies } = useQuery<MoviesResponse>(
+    ['search', 'movies', searchTerm],
+    () => api.searchMovies(searchTerm),
+    { enabled: isSearching },
+  )
+
   const keyExtractor = useCallback(item => R.prop('id', item).toString(), [])
 
   const renderItem = useCallback(prop => {
@@ -39,9 +45,11 @@ const MoviesList: React.FC = props => {
     )
   }, [])
 
+  const movies = R.flatten(R.pluck('results')(R.propOr([], 'pages', data)))
+  const searchResults = R.propOr(null, 'results', searchedMovies)
   return (
     <FlatList
-      data={R.flatten(R.pluck('results')(R.propOr([], 'pages', data)))}
+      data={isSearching ? (searchResults as Movie[]) : (movies as Movie[])}
       columnWrapperStyle={styles.columnWrapper}
       ItemSeparatorComponent={() => <VerticalSpace height={8} />}
       keyExtractor={keyExtractor}
