@@ -38,6 +38,7 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error'],
     semi: ['error', 'never'],
+    camelcase: 0,
     'no-underscore-dangle': 0,
     'import/prefer-default-export': 'off',
     'class-methods-use-this': [0],
@@ -77,7 +78,7 @@ module.exports = {
     'react-native/no-raw-text': 2,
     'react-native/no-single-element-style-arrays': 2,
     'no-use-before-define': 0,
-    '@typescript-eslint/explicit-member-accessibility': [2, { accessibility: 'no-public' }],
+    '@typescript-eslint/explicit-member-accessibility': 0,
     '@typescript-eslint/no-empty-interface': 1,
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/explicit-function-return-type': [
