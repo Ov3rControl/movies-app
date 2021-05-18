@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { useNavigation } from '@react-navigation/native'
 import { FlatList, View } from 'react-native'
 import Icon from 'react-native-vector-icons/EvilIcons'
 import Header from 'components/core/Header'
@@ -14,6 +15,7 @@ import useFavourites from 'store/favourites'
 import R from 'ramda'
 
 const FavoriteScreen: React.FC = () => {
+  const navigation = useNavigation()
   const favouriteMovies = useFavourites(state => state.favourites)
 
   const renderItem = useCallback(
@@ -38,7 +40,12 @@ const FavoriteScreen: React.FC = () => {
     <ScreenContainerNoScroll widthPercentage={1}>
       <Header>
         <Row width={'100%'} alignItems={'center'}>
-          <Icon name={'chevron-left'} color={colors.stormGray} size={perfectFont(42)} />
+          <Icon
+            name={'chevron-left'}
+            color={colors.stormGray}
+            size={perfectFont(42)}
+            onPress={() => navigation.goBack()}
+          />
           <HorizontalSpace width={75} />
           <Typography
             text={'Favourite Movies'}
