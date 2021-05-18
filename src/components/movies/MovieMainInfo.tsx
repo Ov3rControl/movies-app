@@ -13,7 +13,8 @@ import { MovieGeneralInfo } from 'components/movies/MovieGeneralInfo'
 type MovieMainInfoProps = {
   posterPath: string
   language: string
-  categories: string
+  categories?: string
+  releaseDate?: string
   avgVote: number
   voteCount: number
   isFavCard?: boolean
@@ -24,6 +25,7 @@ export const MovieMainInfo: React.FC<MovieMainInfoProps> = ({
   language,
   avgVote,
   categories,
+  releaseDate,
   voteCount,
   isFavCard = false,
 }) => {
@@ -45,7 +47,13 @@ export const MovieMainInfo: React.FC<MovieMainInfoProps> = ({
           />
         </Row>
       </CardImageBackground>
-      <MovieGeneralInfo text={categories} avgVote={avgVote} voteCount={voteCount} />
+      {
+        <MovieGeneralInfo
+          text={categories || releaseDate || '-'}
+          avgVote={avgVote}
+          voteCount={voteCount}
+        />
+      }
     </Container>
   )
 }

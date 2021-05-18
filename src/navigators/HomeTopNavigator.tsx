@@ -8,7 +8,7 @@ import MoviesList from 'components/movies/MoviesList'
 
 const Tab = createMaterialTopTabNavigator()
 
-const HomeTopNavigator = () => {
+const HomeTopNavigator: React.FC = () => {
   return (
     <Tab.Navigator
       initialRouteName={'popularMovies'}
@@ -24,7 +24,7 @@ const HomeTopNavigator = () => {
       }}
     >
       <Tab.Screen
-        name={'popularMovies'}
+        name={'popular'}
         component={MoviesList}
         options={{
           tabBarLabel: ({ focused }) => (
@@ -33,7 +33,7 @@ const HomeTopNavigator = () => {
         }}
       />
       <Tab.Screen
-        name={'topRated'}
+        name={'top_rated'}
         component={MoviesList}
         options={{
           tabBarLabel: ({ focused }) => (

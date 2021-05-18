@@ -8,7 +8,6 @@ import { MovieMainInfo } from 'components/movies/MovieMainInfo'
 type MovieCardProps = {
   title: string
   posterPath: string
-  categories: string
   language: string
   releaseDate: string
   voteCount: number
@@ -18,7 +17,6 @@ type MovieCardProps = {
 const MovieCard: React.FC<MovieCardProps> = ({
   title,
   posterPath,
-  categories,
   language,
   releaseDate,
   voteCount,
@@ -28,7 +26,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
     <MovieMainInfo
       posterPath={posterPath}
       language={language}
-      categories={categories}
+      releaseDate={releaseDate}
       avgVote={avgVote}
       voteCount={voteCount}
     />
@@ -36,17 +34,10 @@ const MovieCard: React.FC<MovieCardProps> = ({
       <Typography
         text={title}
         color={colors.mercury}
-        size={14}
+        size={12}
         fontWeight={'800'}
         marginLeft={perfectWidth(6)}
         marginTop={perfectHeight(4)}
-      />
-      <Typography
-        text={releaseDate}
-        color={colors.scarpaFlow}
-        size={8}
-        fontWeight={'800'}
-        marginLeft={perfectWidth(6)}
       />
     </MovieExtraInfo>
   </CardContainer>
