@@ -7,11 +7,14 @@ import colors from 'styles/colors'
 import VerticalSpace from 'components/layout/VerticalSpace'
 import MoviesClient from 'api/movieClient'
 import { Movie, MoviesResponse } from 'types/Movie'
+import useSearch from 'store/search'
 
 const api = new MoviesClient()
 
 const MoviesList: React.FC = props => {
   const routeName: string = R.path(['route', 'name'], props) as string
+  const searchTerm = useSearch(state => state.searchTerm)
+  const isSearching = !R.isEmpty(searchTerm)
 
   const { data, fetchNextPage } = useInfiniteQuery<MoviesResponse>(
     ['movies', routeName],
