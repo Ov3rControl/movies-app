@@ -1,12 +1,9 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import VerticalSpace from 'components/layout/VerticalSpace'
 import Row from 'components/layout/Row'
-import { perfectFont, perfectHeight, perfectWidth } from 'helpers/responsiveHelpers'
+import { perfectHeight, perfectWidth } from 'helpers/responsiveHelpers'
 import LanguageTag from 'components/LanguageTag'
 import HorizontalSpace from 'components/layout/HorizontalSpace'
-import colors from 'styles/colors'
 import styled from 'styled-components/native'
 import { MovieGeneralInfo } from 'components/movies/MovieGeneralInfo'
 
@@ -17,7 +14,6 @@ type MovieMainInfoProps = {
   releaseDate?: string
   avgVote: number
   voteCount: number
-  isFavCard?: boolean
 }
 
 export const MovieMainInfo: React.FC<MovieMainInfoProps> = ({
@@ -27,7 +23,6 @@ export const MovieMainInfo: React.FC<MovieMainInfoProps> = ({
   categories,
   releaseDate,
   voteCount,
-  isFavCard = false,
 }) => {
   return (
     <Container>
@@ -39,12 +34,6 @@ export const MovieMainInfo: React.FC<MovieMainInfoProps> = ({
         <Row marginLeft={perfectWidth(6)}>
           <LanguageTag language={language} />
           <HorizontalSpace width={100} />
-          <Icon
-            name={'heart'}
-            color={colors.wildWatermelon}
-            size={perfectFont(18)}
-            style={isFavCard && styles.favCardIcon}
-          />
         </Row>
       </CardImageBackground>
       {
@@ -60,14 +49,9 @@ export const MovieMainInfo: React.FC<MovieMainInfoProps> = ({
 
 const Container = styled.View`
   justify-content: center;
+  width: ${perfectWidth(166)}px;
 `
 
 const CardImageBackground = styled.ImageBackground`
   height: ${perfectHeight(220)}px;
 `
-
-const styles = StyleSheet.create({
-  favCardIcon: {
-    marginRight: perfectWidth(8),
-  },
-})

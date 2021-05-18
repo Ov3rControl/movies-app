@@ -32,7 +32,7 @@ const Movie: React.FC = props => {
         source={{ uri: `https://image.tmdb.org/t/p/w185/${R.prop('poster_path', data)}` }}
         resizeMode={'stretch'}
       >
-        <MovieHeader />
+        <MovieHeader id={R.propOr('', 'id', data)} />
         <VerticalSpace height={150} />
         <LanguageTag
           language={R.prop('original_language', data).toUpperCase()}

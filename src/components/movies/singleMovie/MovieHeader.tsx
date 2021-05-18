@@ -8,9 +8,16 @@ import colors from 'styles/colors'
 import { perfectFont } from 'helpers/responsiveHelpers'
 import Typography from 'components/core/typography/Typography'
 import VerticalSpace from 'components/layout/VerticalSpace'
+import useFavourites from 'store/favourites'
 
-export const MovieHeader: React.FC = () => {
+type MovieHeaderProps = {
+  id: string
+}
+
+export const MovieHeader: React.FC<MovieHeaderProps> = ({ id }) => {
   const navigation = useNavigation()
+  const { handleFavouriteAction, isMovieFavoured } = useFavourites(state => state)
+  const isMovieInfav = isMovieFavoured(id)
   return (
     <Container>
       <VerticalSpace height={20} />
@@ -25,7 +32,12 @@ export const MovieHeader: React.FC = () => {
             fontFamily={'Gilroy-Light'}
           />
         </Back>
-        <AntdIcon name={'heart'} color={colors.wildWatermelon} size={perfectFont(16)} />
+        <AntdIcon
+          name={'heart'}
+          color={isMovieInfav ? colors.wildWatermelon : colors.white}
+          size={perfectFont(16)}
+          onPress={() => handleFavouriteAction(id)}
+        />
       </Row>
     </Container>
   )
