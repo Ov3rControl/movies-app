@@ -3,6 +3,7 @@ import { TextStyle } from 'react-native'
 import styled from 'styled-components/native'
 import colors from 'styles/colors'
 import { perfectFont, perfectHeight } from 'helpers/responsiveHelpers'
+import { isIos } from 'helpers/generalHelpers'
 
 type TypographyProps = {
   text: string
@@ -17,7 +18,12 @@ const Typography: React.FC<TypographyProps> = ({
   ...props
 }: TypographyProps) => {
   return (
-    <Text size={size} fontFamily={fontFamily} color={color} style={{ ...props }}>
+    <Text
+      size={size}
+      fontFamily={isIos() ? 'American Typewriter' : fontFamily}
+      color={color}
+      style={{ ...props }}
+    >
       {text}
     </Text>
   )
