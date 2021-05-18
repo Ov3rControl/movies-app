@@ -25,7 +25,7 @@ const SafeArea = styled.SafeAreaView`
 `
 
 const Container = styled.View`
-  width: ${screenWidth * 0.915}px;
+  width: 100%;
   align-self: center;
   background-color: ${colors.steelGray};
   padding-top: ${Platform.OS === 'android' ? perfectHeight(44) : 0}px;
