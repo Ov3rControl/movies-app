@@ -29,7 +29,7 @@ const RatingStars: React.FC<RatingStarsProps> = ({ numOfSelected, numOfStars = 5
     <Row {...props}>
       {R.map(
         (current: number) => (
-          <Star selected={current < numOfSelected} />
+          <Star selected={current < numOfSelected} key={current.toString()} />
         ),
         R.times(R.identity, numOfStars),
       )}

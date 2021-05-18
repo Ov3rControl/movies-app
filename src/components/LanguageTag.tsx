@@ -11,7 +11,7 @@ type LanguageTagProps = {
 
 const LanguageTag: React.FC<LanguageTagProps> = ({ language, ...props }) => (
   <Container style={{ ...props }}>
-    <Typography text={language} color={colors.white} size={14} />
+    <Typography text={language.toUpperCase()} color={colors.white} size={14} />
   </Container>
 )
 export default LanguageTag
