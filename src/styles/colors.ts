@@ -9,4 +9,5 @@ export default {
   gradientStart: '#8036E7',
   gradientEnd: '#FF3365',
   wildWatermelon: '#FF4D79',
+  cadetBlue: '#9FA5C0',
 }

@@ -1,20 +1,20 @@
 import React from 'react'
-import ScreenContainer from 'components/layout/ScreenContainer'
 import Header from 'components/core/Header'
 import TextInput from 'components/core/inputs/TextInput'
 import VerticalSpace from 'components/layout/VerticalSpace'
 import HomeTopNavigator from 'navigators/HomeTopNavigator'
+import MainScreenNoScroll from 'components/layout/MainScreenNoScroll'
 
 const Home: React.FC = () => {
   return (
-    <ScreenContainer widthPercentage={1}>
+    <MainScreenNoScroll widthPercentage={1}>
       <Header />
-      <ScreenContainer>
+      <MainScreenNoScroll>
         <TextInput placeholder={'Search Movies'} />
         <VerticalSpace height={8} />
         <HomeTopNavigator />
-      </ScreenContainer>
-    </ScreenContainer>
+      </MainScreenNoScroll>
+    </MainScreenNoScroll>
   )
 }
 
