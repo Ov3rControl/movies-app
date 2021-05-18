@@ -1,17 +1,15 @@
 import React from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, StyleSheet } from 'react-native'
 import MovieCard from 'components/cards/MovieCard'
 import colors from 'styles/colors'
 import VerticalSpace from 'components/layout/VerticalSpace'
 
-type MoviesListProps = {}
-
-const MoviesList: React.FC<MoviesListProps> = ({}) => {
+const MoviesList: React.FC = () => {
   return (
     <FlatList
       data={[1, 2, 3, 4, 5]}
-      columnWrapperStyle={{ justifyContent: 'space-between' }}
-      ItemSeparatorComponent={() => <VerticalSpace height={4} />}
+      columnWrapperStyle={styles.columnWrapper}
+      ItemSeparatorComponent={() => <VerticalSpace height={8} />}
       renderItem={() => (
         <>
           <MovieCard
@@ -34,3 +32,9 @@ const MoviesList: React.FC<MoviesListProps> = ({}) => {
 }
 
 export default MoviesList
+
+const styles = StyleSheet.create({
+  columnWrapper: {
+    justifyContent: 'space-between',
+  },
+})
