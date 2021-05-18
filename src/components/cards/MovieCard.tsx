@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import styled from 'styled-components/native'
+import { useNavigation } from '@react-navigation/native'
 import { perfectHeight, perfectWidth } from 'helpers/responsiveHelpers'
 import colors from 'styles/colors'
 import Typography from 'components/core/typography/Typography'
 import { MovieMainInfo } from 'components/movies/MovieMainInfo'
 
 type MovieCardProps = {
+  id: number
   title: string
   posterPath: string
   language: string
@@ -21,30 +23,39 @@ const MovieCard: React.FC<MovieCardProps> = ({
   releaseDate,
   voteCount,
   avgVote,
-}) => (
-  <CardContainer>
-    <MovieMainInfo
-      posterPath={posterPath}
-      language={language}
-      releaseDate={releaseDate}
-      avgVote={avgVote}
-      voteCount={voteCount}
-    />
-    <MovieExtraInfo>
-      <Typography
-        text={title}
-        color={colors.mercury}
-        size={12}
-        fontWeight={'800'}
-        marginLeft={perfectWidth(6)}
-        marginTop={perfectHeight(4)}
+  id,
+}) => {
+  const navigation = useNavigation()
+
+  const handleCardPress = useCallback(() => {
+    navigation.navigate('movieDetails', { movieId: id })
+  }, [id, navigation])
+
+  return (
+    <CardContainer onPress={handleCardPress}>
+      <MovieMainInfo
+        posterPath={posterPath}
+        language={language}
+        releaseDate={releaseDate}
+        avgVote={avgVote}
+        voteCount={voteCount}
       />
-    </MovieExtraInfo>
-  </CardContainer>
-)
+      <MovieExtraInfo>
+        <Typography
+          text={title}
+          color={colors.mercury}
+          size={12}
+          fontWeight={'800'}
+          marginLeft={perfectWidth(6)}
+          marginTop={perfectHeight(4)}
+        />
+      </MovieExtraInfo>
+    </CardContainer>
+  )
+}
 export default MovieCard
 
-const CardContainer = styled.View`
+const CardContainer = styled.TouchableOpacity`
   width: ${perfectWidth(170)}px;
   height: ${perfectHeight(308)}px;
   border-radius: ${perfectWidth(10)}px;

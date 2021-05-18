@@ -25,6 +25,7 @@ const MoviesList: React.FC = props => {
     const movie: Movie = R.prop('item', prop) as Movie
     return (
       <MovieCard
+        id={R.prop('id', movie)}
         title={R.prop('title', movie)}
         posterPath={R.prop('poster_path', movie)}
         language={R.prop('original_language', movie)}

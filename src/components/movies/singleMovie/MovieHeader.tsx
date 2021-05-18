@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 import styled from 'styled-components/native'
 import Icon from 'react-native-vector-icons/EvilIcons'
 import AntdIcon from 'react-native-vector-icons/AntDesign'
@@ -9,11 +10,12 @@ import Typography from 'components/core/typography/Typography'
 import VerticalSpace from 'components/layout/VerticalSpace'
 
 export const MovieHeader: React.FC = () => {
+  const navigation = useNavigation()
   return (
     <Container>
       <VerticalSpace height={20} />
       <Row width={'100%'} justifyContent={'space-between'} alignItems={'center'}>
-        <Back>
+        <Back onPress={() => navigation.goBack()}>
           <Icon name={'chevron-left'} color={colors.stormGray} size={perfectFont(32)} />
           <Typography
             text={'Back'}

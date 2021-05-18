@@ -4,12 +4,16 @@ import Typography from 'components/core/typography/Typography'
 import colors from 'styles/colors'
 import { perfectWidth } from 'helpers/responsiveHelpers'
 
-export const MovieReleaseDate: React.FC = () => {
+type MovieReleaseDateProps = {
+  releaseDate: string
+}
+
+export const MovieReleaseDate: React.FC<MovieReleaseDateProps> = ({ releaseDate }) => {
   return (
     <Row>
       <Typography text={'Release Date: '} color={colors.mercury} />
       <Typography
-        text={'2018-04-25'}
+        text={releaseDate}
         fontWeight={'300'}
         color={colors.white}
         fontFamily={'Gilroy-Light'}
