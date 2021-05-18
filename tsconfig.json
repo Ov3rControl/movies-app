@@ -64,6 +64,9 @@
       "@styles/*": ["src/styles/*"],
       "@screens/*": ["src/screens/*"],
       "@navigators/*": ["src/navigators/*"],
+      "@services/*": ["src/services/*"],
+      "@api/*": ["src/api/*"],
+      "@types/*": ["src/types/*"],
     }
   },
   "exclude": [
