@@ -67,6 +67,7 @@
       "@services/*": ["src/services/*"],
       "@api/*": ["src/api/*"],
       "@types/*": ["src/types/*"],
+      "@store/*": ["src/store/*"],
     }
   },
   "exclude": [
