@@ -10,4 +10,5 @@ export default {
   gradientEnd: '#FF3365',
   wildWatermelon: '#FF4D79',
   cadetBlue: '#9FA5C0',
+  gunPowder: '#222232',
 }
