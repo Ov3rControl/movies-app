@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useCallback } from 'react'
+import { useNavigation } from '@react-navigation/native'
 import styled from 'styled-components/native'
 import { MovieMainInfo } from 'components/movies/MovieMainInfo'
 import Row from 'components/layout/Row'
@@ -8,25 +9,48 @@ import VerticalSpace from 'components/layout/VerticalSpace'
 import { perfectWidth } from 'helpers/responsiveHelpers'
 import Button from 'components/core/buttons/Button'
 
-const FavouriteMovieCard: React.FC = () => {
+type FavouriteMovieCardProps = {
+  id: string
+  title: string
+  language: string
+  description: string
+  posterPath: string
+  categories: string
+  avgVote: number
+  voteCount: number
+}
+
+const FavouriteMovieCard: React.FC<FavouriteMovieCardProps> = ({
+  id,
+  title,
+  description,
+  language,
+  categories,
+  posterPath,
+  avgVote,
+  voteCount,
+}) => {
+  const navigation = useNavigation()
+
+  const handleCardPress = useCallback(() => {
+    navigation.navigate('movieDetails', { movieId: id })
+  }, [id, navigation])
+
   return (
-    <Row>
+    <Row justifyContent={'space-evenly'}>
       <MovieMainInfo
-        language={'EN'}
-        posterPath={'/x9FrNr3KcLKsTVqzitIDFwxq48l.jpg'}
-        categories={'Action, Adventure, Drama'}
-        voteCount={1400}
-        avgVote={9}
-        isFavCard
+        language={language.toUpperCase()}
+        posterPath={posterPath}
+        categories={categories}
+        voteCount={voteCount}
+        avgVote={avgVote}
       />
       <Container>
         <VerticalSpace height={12} />
-        <Typography text={'Tenet'} color={colors.mercury} marginLeft={12} />
+        <Typography text={title} color={colors.mercury} marginLeft={12} />
         <VerticalSpace height={18} />
         <Typography
-          text={
-            'The main character is a secret agent who passes a cruel test of reliability and joins an incredible mission. The fate of the world depends on its implementation, and for success it is necessary to discard all previous ideas about space and time.'
-          }
+          text={description}
           fontWeight={'300'}
           size={8}
           fontFamily={'Gilroy-Light'}
@@ -35,12 +59,7 @@ const FavouriteMovieCard: React.FC = () => {
           maxWidth={perfectWidth(175)}
         />
         <VerticalSpace height={75} />
-        <Button
-          onPress={() => ({})}
-          width={perfectWidth(150)}
-          alignSelf={'flex-start'}
-          marginLeft={perfectWidth(17.5)}
-        >
+        <Button onPress={handleCardPress} width={perfectWidth(150)} alignSelf={'center'}>
           <Typography text={'Watch The Movie'} color={colors.mercury} />
         </Button>
       </Container>
@@ -51,6 +70,6 @@ const FavouriteMovieCard: React.FC = () => {
 export default FavouriteMovieCard
 
 const Container = styled.View`
-  width: 100%;
   background-color: ${colors.gunPowder};
+  width: ${perfectWidth(166)}px;
 `

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { FlatList, View } from 'react-native'
 import Icon from 'react-native-vector-icons/EvilIcons'
 import Header from 'components/core/Header'
@@ -10,8 +10,30 @@ import Row from 'components/layout/Row'
 import HorizontalSpace from 'components/layout/HorizontalSpace'
 import FavouriteMovieCard from 'components/cards/FavouriteMovieCard'
 import ScreenContainerNoScroll from 'components/layout/ScreenContainerNoScroll'
+import useFavourites from 'store/favourites'
+import R from 'ramda'
 
 const FavoriteScreen: React.FC = () => {
+  const favouriteMovies = useFavourites(state => state.favourites)
+
+  const renderItem = useCallback(
+    ({ item }) => (
+      <FavouriteMovieCard
+        id={R.prop('id', item)}
+        title={R.prop('title', item)}
+        description={R.prop('overview', item)}
+        posterPath={R.prop('poster_path', item)}
+        categories={R.join(', ')(R.pluck('name')(R.propOr([], 'genres', item)))}
+        language={R.prop('original_language', item)}
+        voteCount={R.prop('vote_count', item)}
+        avgVote={R.prop('vote_average', item)}
+      />
+    ),
+    [],
+  )
+
+  const keyExtractor = useCallback(item => R.prop('id', item).toString(), [])
+
   return (
     <ScreenContainerNoScroll widthPercentage={1}>
       <Header>
@@ -31,9 +53,10 @@ const FavoriteScreen: React.FC = () => {
       <VerticalSpace height={20} />
       <ScreenContainerNoScroll>
         <FlatList
-          data={[1, 2, 3, 4, 5]}
-          renderItem={() => <FavouriteMovieCard />}
+          data={favouriteMovies}
+          renderItem={renderItem}
           ItemSeparatorComponent={() => <VerticalSpace height={8} />}
+          keyExtractor={keyExtractor}
         />
       </ScreenContainerNoScroll>
     </ScreenContainerNoScroll>
